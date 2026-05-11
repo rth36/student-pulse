@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Response {
+  id                String   @id @default(cuid())
+  createdAt         DateTime @default(now())
+  gradeLevel        Int
+
+  bedtimeHour       Int
+  wakeHour          Int
+  sleepHours        Float
+  sleepQuality      Int
+
+  stressLevel       Int
+
+  screenTimeHours   Float
+  screenBeforeBed   Boolean
+
+  meditationMinutes Int
+  breathingExercise Boolean
+}
+
+// Stored separately — no link to Response, preserving anonymity of wellness data
+model RaffleEntry {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  name      String
+  email     String
+}
